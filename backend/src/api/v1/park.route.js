@@ -14,9 +14,9 @@ router.route('/list').get(parkController.listParks)
 
 router
   .route('/:park_id')
-  .get(parkController.getPark)
-  .patch(parkController.updatePark)
-  .delete(parkController.deletePark)
+  .get(validate(parkValidation.getPark), parkController.getPark)
+  .patch(validate(parkValidation.updatePark), parkController.updatePark)
+  .delete(validate(parkValidation.deletePark), parkController.deletePark)
 
 module.exports = router
 
