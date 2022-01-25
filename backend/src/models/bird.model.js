@@ -31,6 +31,15 @@ const birdSchema = mongoose.Schema({
     unique: true,
     maxLength: 300,
   },
+  parks: {
+    type: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Park',
+      },
+    ],
+    default: [],
+  },
 })
 
 const Bird = mongoose.model('Bird', birdSchema)
