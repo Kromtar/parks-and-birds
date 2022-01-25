@@ -14,9 +14,9 @@ router.route('/list').get(birdController.listBirds)
 
 router
   .route('/:bird_id')
-  .get(birdController.getBird)
-  .patch(birdController.updateBird)
-  .delete(birdController.deleteBird)
+  .get(validate(birdValidation.getBird), birdController.getBird)
+  .patch(validate(birdValidation.updateBird), birdController.updateBird)
+  .delete(validate(birdValidation.deleteBird), birdController.deleteBird)
 
 module.exports = router
 
