@@ -5,6 +5,7 @@ const parkSchema = mongoose.Schema({
     type: String,
     maxLength: 100,
     required: true,
+    unique: true,
   },
   region: {
     type: String,
@@ -23,7 +24,6 @@ const parkSchema = mongoose.Schema({
   },
   link: {
     type: String,
-    unique: true,
     maxLength: 300,
   },
   birds: {
