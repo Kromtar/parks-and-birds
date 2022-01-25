@@ -77,15 +77,15 @@ components:
       type: string
       format: uuid
   responses:
-    Duplicate:
-      description: Duplicate Value
+    Bad:
+      description: Bad Request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
           example:
             code: 400
-            message: Trying to repeat a unique value
+            message: Bad Request
     NotFound:
       description: Not found
       content:

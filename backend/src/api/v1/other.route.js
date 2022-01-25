@@ -1,14 +1,24 @@
 //Otras rutas para el manejo de relaciones entre los modelos
 const express = require('express')
+const validate = require('../../utils/validate')
 
 const otherController = require('../../controllers/other.controller')
+const otherValidation = require('../../validations/other.validation')
 
 const router = express.Router()
 
-router.route('/link_bird_and_park_by_id').post(otherController.linkBirdParkById)
+router
+  .route('/link_bird_and_park_by_id')
+  .post(
+    validate(otherValidation.linkBirdAndParkById),
+    otherController.linkBirdParkById
+  )
 router
   .route('/link_bird_and_park_by_name')
-  .post(otherController.linkBirdParkByName)
+  .post(
+    validate(otherValidation.linkBirdAndParkByName),
+    otherController.linkBirdParkByName
+  )
 
 module.exports = router
 

@@ -1,10 +1,14 @@
 const express = require('express')
+const validate = require('../../utils/validate')
 
 const parkController = require('../../controllers/park.controller')
+const parkValidation = require('../../validations/park.validation')
 
 const router = express.Router()
 
-router.route('/').post(parkController.createPark)
+router
+  .route('/')
+  .post(validate(parkValidation.createPark), parkController.createPark)
 
 module.exports = router
 
@@ -67,6 +71,6 @@ module.exports = router
  *             schema:
  *                $ref: '#/components/schemas/Park'
  *       "400":
- *         $ref: '#/components/responses/Duplicate'
+ *         $ref: '#/components/responses/Bad'
  *
  */

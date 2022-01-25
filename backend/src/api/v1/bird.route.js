@@ -1,10 +1,14 @@
 const express = require('express')
+const validate = require('../../utils/validate')
 
 const birdController = require('../../controllers/bird.controller')
+const birdValidation = require('../../validations/bird.validation')
 
 const router = express.Router()
 
-router.route('/').post(birdController.createBird)
+router
+  .route('/')
+  .post(validate(birdValidation.createBird), birdController.createBird)
 
 module.exports = router
 
@@ -68,6 +72,6 @@ module.exports = router
  *             schema:
  *                $ref: '#/components/schemas/Park'
  *       "400":
- *         $ref: '#/components/responses/Duplicate'
+ *         $ref: '#/components/responses/Bad'
  *
  */
