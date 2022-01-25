@@ -95,3 +95,12 @@ components:
           example:
             code: 404
             message: Not found
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 409
+            message: Conflict in operation

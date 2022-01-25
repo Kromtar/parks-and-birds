@@ -4,7 +4,7 @@ const birdController = require('../../controllers/bird.controller')
 
 const router = express.Router()
 
-router.route('/bird').post(birdController.createBird)
+router.route('/').post(birdController.createBird)
 
 module.exports = router
 

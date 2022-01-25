@@ -2,6 +2,7 @@ const express = require('express')
 const docsRoute = require('./docs.route')
 const parkRoute = require('./park.route')
 const birdRoute = require('./bird.route')
+const otherRoute = require('./other.route')
 
 const router = express.Router()
 
@@ -13,6 +14,10 @@ const defaultRoutes = [
   {
     path: '/bird',
     route: birdRoute,
+  },
+  {
+    path: '/',
+    route: otherRoute,
   },
 ]
 

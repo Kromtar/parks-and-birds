@@ -4,7 +4,7 @@ const parkController = require('../../controllers/park.controller')
 
 const router = express.Router()
 
-router.route('/park').post(parkController.createPark)
+router.route('/').post(parkController.createPark)
 
 module.exports = router
 
