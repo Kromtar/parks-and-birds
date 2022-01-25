@@ -16,3 +16,5 @@ mongo -u $SUPERUSER_USERNAME -p $SUPERUSER_PASSWORD --eval 'db.createUser({user:
 
 echo "Create main database normal user"
 mongo -u $SUPERUSER_USERNAME -p $SUPERUSER_PASSWORD --eval 'db.createUser({user:"'${DATABASE_USERNAME}'", pwd:"'${DATABASE_PASSWORD}'", roles:[{role:"readWrite", db:"'${DATABASE_NAME}'"}]}); quit()' admin
+
+sh populate.sh

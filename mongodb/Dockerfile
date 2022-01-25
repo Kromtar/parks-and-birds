@@ -4,6 +4,7 @@ FROM mongo:5.0.5
 COPY mongod.conf /etc/mongo/
 COPY entrypoint_script.sh /docker-entrypoint-initdb.d/
 COPY init.sh /
+COPY populate.sh /
 
 # Asigna permisos al fichero mongod.conf
 RUN chmod 400 /etc/mongo/mongod.conf
