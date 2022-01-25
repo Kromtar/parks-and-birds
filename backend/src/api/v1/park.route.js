@@ -118,9 +118,7 @@ module.exports = router
  *               type: object
  *               properties:
  *                 results:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/Park'
+ *                   $ref: '#/components/schemas/Park'
  *       "400":
  *         $ref: '#/components/responses/Bad'
  *       "404":
@@ -142,10 +140,6 @@ module.exports = router
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - name
- *               - region
- *               - park_type
  *             properties:
  *               name:
  *                 type: string

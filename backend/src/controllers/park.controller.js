@@ -1,7 +1,7 @@
 const httpStatus = require('http-status')
 const catchAsync = require('../utils/catchAsync')
 const { Park } = require('../models')
-const { removePark } = require('./bird.controller')
+const { removePark } = require('./other.controller')
 
 const createPark = catchAsync(async (req, res) => {
   const newPark = await Park.create(req.body)

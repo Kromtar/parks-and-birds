@@ -34,7 +34,17 @@ const linkBirdParkByName = catchAsync(async (req, res) => {
   res.status(httpStatus.NOT_FOUND).send()
 })
 
+const removePark = catchAsync(async (id, parkId) => {
+  await Bird.updateOne({ _id: id }, { $pull: { parks: parkId } })
+})
+
+const removeBird = catchAsync(async (id, birdId) => {
+  await Park.updateOne({ _id: id }, { $pull: { birds: birdId } })
+})
+
 module.exports = {
   linkBirdParkById,
   linkBirdParkByName,
+  removePark,
+  removeBird,
 }
