@@ -2,6 +2,8 @@ components:
   schemas:
     Bird:
       type: object
+      required:
+        - name
       properties:
         id:
           type: string
@@ -32,6 +34,10 @@ components:
         parks: [5ebac534954b54139806c113]
     Park:
       type: object
+      required:
+        - name
+        - region
+        - park_type
       properties:
         id:
           type: string

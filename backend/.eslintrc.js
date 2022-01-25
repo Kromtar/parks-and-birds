@@ -4,9 +4,10 @@ module.exports = {
     'prettier/prettier': 'warn',
   },
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2017,
   },
   env: {
+    es6: true,
     node: true,
   },
 }

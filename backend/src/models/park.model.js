@@ -23,7 +23,6 @@ const parkSchema = mongoose.Schema({
   },
   link: {
     type: String,
-    unique: true,
     maxLength: 300,
   },
   birds: {
