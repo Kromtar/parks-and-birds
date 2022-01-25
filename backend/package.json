@@ -11,7 +11,8 @@
     "start-dev": "nodemon server.js"
   },
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8"
   },
   "devDependencies": {
     "eslint": "^8.7.0",
