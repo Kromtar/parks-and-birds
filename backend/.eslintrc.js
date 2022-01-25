@@ -3,4 +3,10 @@ module.exports = {
   rules: {
     'prettier/prettier': 'warn',
   },
+  parserOptions: {
+    ecmaVersion: 6,
+  },
+  env: {
+    node: true,
+  },
 }
