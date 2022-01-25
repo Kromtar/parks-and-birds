@@ -3,10 +3,11 @@ components:
     Bird:
       type: object
       required:
+        - id
         - name
       properties:
         id:
-          type: string
+          $ref: '#/components/types/ObjectId'
         name:
           type: string
         description:
@@ -22,7 +23,7 @@ components:
         parks:
           type: array
           items:
-            type: string
+            $ref: '#/components/types/ObjectId'
       example:
         id: 5ebac534954b54139806c112
         name: Gorrión
@@ -35,12 +36,13 @@ components:
     Park:
       type: object
       required:
+        - id
         - name
         - region
         - park_type
       properties:
         id:
-          type: string
+          $ref: '#/components/types/ObjectId'
         name:
           type: string
         region:
@@ -54,7 +56,7 @@ components:
         birds:
           type: array
           items:
-            type: string
+            $ref: '#/components/types/ObjectId'
       example:
         id: 5ebac534954b54139806c114
         name: Parque Nacional Lauca
@@ -63,3 +65,33 @@ components:
         hectares: 137883
         link: https://www.conaf.cl/parques/parque-nacional-lauca/
         birds: [5ebac534954b54139806c112]
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+  types:
+    ObjectId:
+      type: string
+      format: uuid
+  responses:
+    Duplicate:
+      description: Duplicate Value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Trying to repeat a unique value
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found

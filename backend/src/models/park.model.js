@@ -5,6 +5,7 @@ const parkSchema = mongoose.Schema({
     type: String,
     maxLength: 100,
     required: true,
+    unique: true,
   },
   region: {
     type: String,
