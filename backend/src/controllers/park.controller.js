@@ -4,8 +4,12 @@ const { Park, Bird } = require('../models')
 const { removePark } = require('./other.controller')
 
 const createPark = catchAsync(async (req, res) => {
-  const newPark = await Park.create(req.body)
-  res.status(httpStatus.CREATED).send(newPark)
+  try {
+    const newPark = await Park.create(req.body)
+    res.status(httpStatus.CREATED).send(newPark)
+  } catch (err) {
+    res.status(httpStatus.BAD_REQUEST).send()
+  }
 })
 
 const listParks = catchAsync(async (req, res) => {
@@ -39,9 +43,10 @@ const updatePark = catchAsync(async (req, res) => {
       req.body,
       { new: true }
     )
-    res.send(updatedPark)
+    if (updatedPark) res.send(updatedPark)
+    res.status(httpStatus.NOT_FOUND).send()
   } catch (err) {
-    res.status(httpStatus.NOT_FOUND).send(err)
+    res.status(httpStatus.BAD_REQUEST).send()
   }
 })
 

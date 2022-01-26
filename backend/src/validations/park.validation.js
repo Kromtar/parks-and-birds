@@ -3,11 +3,11 @@ const { objectId } = require('./custom')
 
 const createPark = {
   body: Joi.object().keys({
-    name: Joi.string().required(),
-    region: Joi.string().required(),
+    name: Joi.string().max(100).required(),
+    region: Joi.string().max(100).required(),
     park_type: Joi.string().required(),
-    hectares: Joi.number().required(),
-    link: Joi.string(),
+    hectares: Joi.number().min(0),
+    link: Joi.string().max(300),
   }),
 }
 
@@ -23,11 +23,11 @@ const updatePark = {
   }),
   body: Joi.object()
     .keys({
-      name: Joi.string(),
-      region: Joi.string(),
+      name: Joi.string().max(100),
+      region: Joi.string().max(100),
       park_type: Joi.string(),
-      hectares: Joi.number(),
-      link: Joi.string(),
+      hectares: Joi.number().min(0),
+      link: Joi.string().max(300),
     })
     .min(1),
 }

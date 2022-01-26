@@ -1,9 +1,10 @@
 const Joi = require('joi')
+const { objectId } = require('./custom')
 
 const linkBirdAndParkById = {
   body: Joi.object().keys({
-    park_id: Joi.string().required(),
-    bird_id: Joi.string().required(),
+    park_id: Joi.string().custom(objectId).required(),
+    bird_id: Joi.string().custom(objectId).required(),
   }),
 }
 
@@ -16,8 +17,8 @@ const linkBirdAndParkByName = {
 
 const unLinkBirdAndParkById = {
   body: Joi.object().keys({
-    park_id: Joi.string().required(),
-    bird_id: Joi.string().required(),
+    park_id: Joi.string().custom(objectId).required(),
+    bird_id: Joi.string().custom(objectId).required(),
   }),
 }
 
