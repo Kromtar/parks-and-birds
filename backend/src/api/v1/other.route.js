@@ -19,6 +19,18 @@ router
     validate(otherValidation.linkBirdAndParkByName),
     otherController.linkBirdParkByName
   )
+router
+  .route('/unlink_bird_and_park_by_id')
+  .post(
+    validate(otherValidation.unLinkBirdParkById),
+    otherController.unLinkBirdParkById
+  )
+router
+  .route('/unlink_bird_and_park_by_name')
+  .post(
+    validate(otherValidation.unLinkBirdParkByName),
+    otherController.unLinkBirdParkByName
+  )
 
 module.exports = router
 
@@ -65,6 +77,65 @@ module.exports = router
  * /link_bird_and_park_by_name:
  *   post:
  *     summary: Relaciona una Ave y un Parque mediante el nombre de cada uno
+ *     tags: [Other]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - park_name
+ *               - bird_name
+ *             properties:
+ *               park_name:
+ *                 type: string
+ *                 description: Nombre del Parque
+ *               bird_name:
+ *                 type: string
+ *                 description: Nombre del Ave
+ *     responses:
+ *       "200":
+ *         description: Ok
+ *       "409":
+ *         $ref: '#/components/responses/Conflict'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ * @swagger
+ * /unlink_bird_and_park_by_id:
+ *   post:
+ *     summary: Remueve la relación entre una Ave y un Parque mediante la Id de cada uno
+ *     tags: [Other]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - park_id
+ *               - bird_id
+ *             properties:
+ *               park_id:
+ *                 type: string
+ *                 description: Id del Parque
+ *               bird_id:
+ *                 type: string
+ *                 description: Id de la Ave
+ *     responses:
+ *       "200":
+ *         description: Ok
+ *       "409":
+ *         $ref: '#/components/responses/Conflict'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ */
+
+/**
+ * @swagger
+ * /unlink_bird_and_park_by_name:
+ *   post:
+ *     summary: Remueve la relación entre una Ave y un Parque mediante el nombre de cada uno
  *     tags: [Other]
  *     requestBody:
  *       required: true

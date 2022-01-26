@@ -109,18 +109,20 @@ module.exports = router
  *         schema:
  *           type: string
  *         description: Id del Parque
+ *       - in: query
+ *         name: include_birds
+ *         schema:
+ *           type: boolean
+ *         description: Para incluir de forma embebida las Aves relacionadas al Parque. Por defecto, Falso
  *     responses:
  *       "200":
  *         description: Ok
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 results:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/Park'
+ *               oneOf:
+ *                 - $ref: '#/components/schemas/Park'
+ *                 - $ref: '#/components/schemas/ParkExtended'
  *       "400":
  *         $ref: '#/components/responses/Bad'
  *       "404":
@@ -142,10 +144,6 @@ module.exports = router
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - name
- *               - region
- *               - park_type
  *             properties:
  *               name:
  *                 type: string

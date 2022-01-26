@@ -14,7 +14,23 @@ const linkBirdAndParkByName = {
   }),
 }
 
+const unLinkBirdAndParkById = {
+  body: Joi.object().keys({
+    park_id: Joi.string().required(),
+    bird_id: Joi.string().required(),
+  }),
+}
+
+const unLinkBirdAndParkByName = {
+  body: Joi.object().keys({
+    park_name: Joi.string().required(),
+    bird_name: Joi.string().required(),
+  }),
+}
+
 module.exports = {
   linkBirdAndParkById,
   linkBirdAndParkByName,
+  unLinkBirdAndParkById,
+  unLinkBirdAndParkByName,
 }
