@@ -33,6 +33,60 @@ components:
         risk: Menor riesgo
         link: https://www.avesdechile.cl/234.htm
         parks: [5ebac534954b54139806c113]
+    BirdExtended:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          $ref: '#/components/types/ObjectId'
+        name:
+          type: string
+        description:
+          type: string
+        habitat:
+          type: string
+        length_cm:
+          type: number
+        risk:
+          type: string
+        link:
+          type: string
+        parks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/types/ObjectId'
+              name:
+                type: string
+              region:
+                type: string
+              park_type:
+                type: string
+              hectares:
+                type: number
+              link:
+                type: string
+      example:
+        id: 5ebac534954b54139806c112
+        name: Gorrión
+        description: Partes superiores pardas, manchadas de castaño y negro; lomo y supracaudales gris pardusco. Partes inferiores blanquesinas, lavadas de gris pardusco.
+        habitat: Marcada preferencia hacia los lugares cercanos al hombre, como jardines, plazas, huertos y chacras de ciudades, pueblos y caserios. Raro hacia las zonas agrestes.
+        length_cm: 17
+        risk: Menor riesgo
+        link: https://www.avesdechile.cl/234.htm
+        parks:
+          [
+            id: 5ebac534954b54139806c114,
+            name: Parque Nacional Lauca,
+            region: Arica y Parinacota,
+            park_type: parque,
+            hectares: 137883,
+            link: https://www.conaf.cl/parques/parque-nacional-lauca/,
+          ]
     Park:
       type: object
       required:

@@ -1,6 +1,6 @@
 const httpStatus = require('http-status')
 const catchAsync = require('../utils/catchAsync')
-const { Bird } = require('../models')
+const { Bird, Park } = require('../models')
 const { removeBird } = require('./other.controller')
 
 const createBird = catchAsync(async (req, res) => {
@@ -14,8 +14,19 @@ const listBirds = catchAsync(async (req, res) => {
 })
 
 const getBird = catchAsync(async (req, res) => {
+  const include_parks = req.query.include_parks || false
   const bird = await Bird.findById(req.params.bird_id)
   if (bird) {
+    //En caso de incluir los Parques en forma embebida, incluimos la entidad completa en la propiedad parks
+    if (include_parks) {
+      var aux_parks = []
+      await Promise.all(
+        bird.parks.map(async (park_id) => {
+          aux_parks.push(await Park.findById(park_id, '-birds -__v'))
+        })
+      )
+      bird.parks = aux_parks
+    }
     res.send(bird)
   }
   res.status(httpStatus.NOT_FOUND).send()

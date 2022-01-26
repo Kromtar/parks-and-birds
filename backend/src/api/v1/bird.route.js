@@ -110,16 +110,20 @@ module.exports = router
  *         schema:
  *           type: string
  *         description: Id de la Ave
+ *       - in: query
+ *         name: include_parks
+ *         schema:
+ *           type: boolean
+ *         description: Para incluir de forma embebida los Parques relacionados al Ave. Por defecto, Falso
  *     responses:
  *       "200":
  *         description: Ok
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 results:
- *                   $ref: '#/components/schemas/Bird'
+ *               oneOf:
+ *                 - $ref: '#/components/schemas/Bird'
+ *                 - $ref: '#/components/schemas/BirdExtended'
  *       "400":
  *         $ref: '#/components/responses/Bad'
  *       "404":
