@@ -3,12 +3,12 @@ const { objectId } = require('./custom')
 
 const createBird = {
   body: Joi.object().keys({
-    name: Joi.string().required(),
-    description: Joi.string(),
-    habitat: Joi.string(),
-    length_cm: Joi.number(),
-    risk: Joi.string(),
-    link: Joi.string(),
+    name: Joi.string().max(100).required(),
+    description: Joi.string().max(500),
+    habitat: Joi.string().max(500),
+    length_cm: Joi.number().min(0),
+    risk: Joi.string().max(50),
+    link: Joi.string().max(300),
   }),
 }
 
@@ -24,12 +24,12 @@ const updateBird = {
   }),
   body: Joi.object()
     .keys({
-      name: Joi.string(),
-      description: Joi.string(),
-      habitat: Joi.string(),
-      length_cm: Joi.number(),
-      risk: Joi.string(),
-      link: Joi.string(),
+      name: Joi.string().max(100),
+      description: Joi.string().max(500),
+      habitat: Joi.string().max(500),
+      length_cm: Joi.number().min(0),
+      risk: Joi.string().max(50),
+      link: Joi.string().max(300),
     })
     .min(1),
 }

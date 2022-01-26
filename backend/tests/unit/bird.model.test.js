@@ -11,7 +11,7 @@ describe('Bird model', () => {
       description: faker.random.word(),
       habitat: faker.random.word(),
       length_cm: faker.datatype.number({ min: 1 }),
-      risk: faker.random.word(),
+      risk: faker.random.word().toLocaleLowerCase(),
       link: faker.random.word(),
       parks: [new ObjectID()],
     }

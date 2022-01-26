@@ -2,9 +2,8 @@ const mongoose = require('mongoose')
 
 const db_username = process.env.DATABASE_USERNAME || ''
 const db_password = process.env.DATABASE_PASSWORD || ''
-const db_name = process.env.DATABASE_NAME || ''
 
-const URI = 'mongodb://mongodb:27017/' + db_name
+const URI = 'mongodb://mongodb:27017/test'
 const options = {
   auth: {
     username: db_username,
@@ -29,6 +28,11 @@ const setupTestDB = () => {
   })
 
   afterAll(async () => {
+    await Promise.all(
+      Object.values(mongoose.connection.collections).map(async (collection) =>
+        collection.deleteMany()
+      )
+    )
     await mongoose.disconnect()
   })
 }

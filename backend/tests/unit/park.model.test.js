@@ -9,7 +9,7 @@ describe('Park model', () => {
     newPark = {
       name: faker.random.word(),
       region: faker.random.word(),
-      park_type: faker.random.word(),
+      park_type: faker.random.word().toLocaleLowerCase(),
       hectares: faker.datatype.number({ min: 1 }),
       link: faker.random.word(),
       birds: [new ObjectID()],
