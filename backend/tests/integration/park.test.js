@@ -1,9 +1,8 @@
 const supertest = require('supertest')
 const httpStatus = require('http-status')
 const { faker } = require('@faker-js/faker')
-var ObjectID = require('bson').ObjectID
 const app = require('../../app')
-const setupTestDB = require('./../testDb')
+const setupTestDB = require('../testDb')
 const { Park } = require('../../src/models')
 const { Park1, Park2, Park3, insertParks } = require('../fixtures/park.fixture')
 const { Bird1, insertBirds } = require('../fixtures/bird.fixture')
@@ -121,8 +120,7 @@ describe('Park routes', () => {
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
-
-      const res = await supertest(app)
+      await supertest(app)
         .post('/v1/park')
         .send(newPark)
         .expect(httpStatus.BAD_REQUEST)
@@ -167,6 +165,8 @@ describe('Park routes', () => {
   describe('GET /v1/park/:park_id', () => {
     test('should return 200 with not embedded by default', async () => {
       await insertParks([Park1])
+      await insertBirds([Bird1])
+      await linkBirdPark(Bird1, Park1)
 
       const res = await supertest(app)
         .get('/v1/park/' + Park1._id)
@@ -180,12 +180,14 @@ describe('Park routes', () => {
         park_type: Park1.park_type,
         hectares: Park1.hectares,
         link: Park1.link,
-        birds: [],
+        birds: [expect.anything()],
       })
     })
 
-    test('should return 200 with not embedded false', async () => {
+    test('should return 200 with embedded false', async () => {
       await insertParks([Park1])
+      await insertBirds([Bird1])
+      await linkBirdPark(Bird1, Park1)
 
       const res = await supertest(app)
         .get('/v1/park/' + Park1._id)
@@ -200,11 +202,11 @@ describe('Park routes', () => {
         park_type: Park1.park_type,
         hectares: Park1.hectares,
         link: Park1.link,
-        birds: [],
+        birds: [expect.anything()],
       })
     })
 
-    test('should return 200 with not embedded true', async () => {
+    test('should return 200 with embedded true', async () => {
       await insertParks([Park1])
       await insertBirds([Bird1])
       await linkBirdPark(Bird1, Park1)

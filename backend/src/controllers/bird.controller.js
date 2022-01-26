@@ -44,7 +44,7 @@ const updateBird = catchAsync(async (req, res) => {
       { new: true }
     )
     if (updatedBird) res.send(updatedBird)
-    res.status(httpStatus.NOT_FOUND).send(err)
+    res.status(httpStatus.NOT_FOUND).send()
   } catch (err) {
     res.status(httpStatus.BAD_REQUEST).send()
   }

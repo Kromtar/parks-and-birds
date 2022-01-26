@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "nodemon server.js",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "express": "^4.17.2",
