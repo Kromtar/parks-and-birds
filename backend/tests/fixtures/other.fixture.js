@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const { Park, Bird } = require('../../src/models')
 
 const linkBirdPark = async (bird, park) => {

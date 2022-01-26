@@ -42,7 +42,6 @@ describe('Park routes', () => {
       })
 
       const dbPark = await Park.findById(res.body._id)
-
       expect(dbPark).toBeDefined()
       expect(dbPark).toMatchObject({
         _id: expect.anything(),

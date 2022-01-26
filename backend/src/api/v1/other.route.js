@@ -22,13 +22,13 @@ router
 router
   .route('/unlink_bird_and_park_by_id')
   .post(
-    validate(otherValidation.unLinkBirdParkById),
+    validate(otherValidation.unLinkBirdAndParkById),
     otherController.unLinkBirdParkById
   )
 router
   .route('/unlink_bird_and_park_by_name')
   .post(
-    validate(otherValidation.unLinkBirdParkByName),
+    validate(otherValidation.unLinkBirdAndParkByName),
     otherController.unLinkBirdParkByName
   )
 
