@@ -26,6 +26,7 @@ const getBird = catchAsync(async (req, res) => {
       var aux_parks = []
       await Promise.all(
         bird.parks.map(async (park_id) => {
+          // No incluimos las propiedades birds ni __v (MongoDb)
           aux_parks.push(await Park.findById(park_id, '-birds -__v'))
         })
       )
@@ -53,6 +54,7 @@ const updateBird = catchAsync(async (req, res) => {
 const deleteBird = catchAsync(async (req, res) => {
   const bird = await Bird.findByIdAndDelete(req.params.bird_id)
   if (bird) {
+    // Eliminamos las referencias a esta Ave de los Parques
     bird.parks.forEach(async (park_id) => {
       await removeBird(park_id, req.params.bird_id)
     })

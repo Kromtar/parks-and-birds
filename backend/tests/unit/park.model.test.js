@@ -2,6 +2,7 @@ const { faker } = require('@faker-js/faker')
 var ObjectID = require('bson').ObjectID
 const { Park } = require('../../src/models')
 
+// Pruebas unitarias modelo Park
 describe('Park model', () => {
   let newPark
 

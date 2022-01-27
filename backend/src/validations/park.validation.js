@@ -29,6 +29,7 @@ const updatePark = {
       hectares: Joi.number().min(0),
       link: Joi.string().max(300),
     })
+    // Al menos uno de los campos debe incluirse
     .min(1),
 }
 

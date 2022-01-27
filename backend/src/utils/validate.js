@@ -3,6 +3,10 @@ const httpStatus = require('http-status')
 const pick = require('./pick')
 const ApiError = require('./apiError')
 
+/**
+ * Para validar las propiedades de un objeto dado un schema
+ */
+
 const validate = (schema) => (req, res, next) => {
   const validSchema = pick(schema, ['params', 'query', 'body'])
   const object = pick(req, Object.keys(validSchema))

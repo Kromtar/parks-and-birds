@@ -13,6 +13,7 @@ const parkSchema = mongoose.Schema({
     maxLength: 100,
   },
   park_type: {
+    //FUTURE: Existen 3 tipos de parques, se puede pasar a ENUM
     type: String,
     required: true,
     trim: true,

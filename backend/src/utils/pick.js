@@ -1,9 +1,7 @@
 /**
- * Create an object composed of the picked object properties
- * @param {Object} object
- * @param {string[]} keys
- * @returns {Object}
+ * Para crear un objeto compuesto de propiedades especificas de otro objeto
  */
+
 const pick = (object, keys) => {
   return keys.reduce((obj, key) => {
     if (object && Object.prototype.hasOwnProperty.call(object, key)) {

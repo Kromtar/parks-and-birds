@@ -4,7 +4,9 @@ FROM mongo:5.0.5
 COPY mongod.conf /etc/mongo/
 COPY entrypoint_script.sh /docker-entrypoint-initdb.d/
 COPY init.sh /
-COPY populate.sh /
+
+# Copia un dump de la base de datos para realizar la población inicial del la misma
+ADD saveDb /saveDb
 
 # Asigna permisos al fichero mongod.conf
 RUN chmod 400 /etc/mongo/mongod.conf

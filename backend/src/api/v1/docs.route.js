@@ -5,6 +5,7 @@ const swaggerDefinition = require('../../docs/swaggerDef')
 
 const router = express.Router()
 
+// Localización de la documentación
 const specs = swaggerJsdoc({
   swaggerDefinition,
   apis: ['src/docs/*.yml', 'src/api/v1/*.js'],

@@ -10,6 +10,7 @@ const { linkBirdPark } = require('../fixtures/other.fixture')
 
 setupTestDB()
 
+// Pruebas de integración de los rutas /bird
 describe('Bird routes', () => {
   describe('POST /v1/bird', () => {
     let newBird

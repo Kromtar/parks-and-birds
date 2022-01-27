@@ -1,3 +1,7 @@
+/*
+ * Helper para el manejo de los mensajes de errores en stack
+ */
+
 class ApiError extends Error {
   constructor(statusCode, message, isOperational = true, stack = '') {
     super(message)
