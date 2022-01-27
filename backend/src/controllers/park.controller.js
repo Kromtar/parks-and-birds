@@ -19,7 +19,7 @@ const createPark = catchAsync(async (req, res) => {
           ' repetido/s',
       })
     }
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 
@@ -45,7 +45,7 @@ const getPark = catchAsync(async (req, res) => {
     }
     res.send(park)
   }
-  res.status(httpStatus.NOT_FOUND).send()
+  res.status(httpStatus.NOT_FOUND).send({ code: 404 })
 })
 
 const updatePark = catchAsync(async (req, res) => {
@@ -56,7 +56,7 @@ const updatePark = catchAsync(async (req, res) => {
       { new: true }
     )
     if (updatedPark) res.send(updatedPark)
-    res.status(httpStatus.NOT_FOUND).send()
+    res.status(httpStatus.NOT_FOUND).send({ code: 404 })
   } catch (err) {
     // En caso de atributo unique que se este repitiendo
     if (err && err.code == 11000) {
@@ -68,7 +68,7 @@ const updatePark = catchAsync(async (req, res) => {
           ' repetido/s',
       })
     }
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 
@@ -87,12 +87,12 @@ const deletePark = catchAsync(async (req, res) => {
     if (park) {
       res.send(park)
     } else {
-      res.status(httpStatus.NOT_FOUND).send()
+      res.status(httpStatus.NOT_FOUND).send({ code: 404 })
     }
   } catch (err) {
     await session.abortTransaction()
     session.endSession()
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 

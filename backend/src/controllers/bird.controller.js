@@ -19,7 +19,7 @@ const createBird = catchAsync(async (req, res) => {
           ' repetido/s',
       })
     }
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 
@@ -45,7 +45,7 @@ const getBird = catchAsync(async (req, res) => {
     }
     res.send(bird)
   }
-  res.status(httpStatus.NOT_FOUND).send()
+  res.status(httpStatus.NOT_FOUND).send({ code: 404 })
 })
 
 const updateBird = catchAsync(async (req, res) => {
@@ -56,7 +56,7 @@ const updateBird = catchAsync(async (req, res) => {
       { new: true }
     )
     if (updatedBird) res.send(updatedBird)
-    res.status(httpStatus.NOT_FOUND).send()
+    res.status(httpStatus.NOT_FOUND).send({ code: 404 })
   } catch (err) {
     // En caso de atributo unique que se este repitiendo
     if (err && err.code == 11000) {
@@ -68,7 +68,7 @@ const updateBird = catchAsync(async (req, res) => {
           ' repetido/s',
       })
     }
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 
@@ -87,12 +87,12 @@ const deleteBird = catchAsync(async (req, res) => {
     if (bird) {
       res.send(bird)
     } else {
-      res.status(httpStatus.NOT_FOUND).send()
+      res.status(httpStatus.NOT_FOUND).send({ code: 404 })
     }
   } catch (err) {
     await session.abortTransaction()
     session.endSession()
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 

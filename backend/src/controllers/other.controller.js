@@ -28,10 +28,10 @@ const linkBirdParkById = catchAsync(async (req, res) => {
     } catch (err) {
       await session.abortTransaction()
       session.endSession()
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
     }
   }
-  res.status(httpStatus.NOT_FOUND).send()
+  res.status(httpStatus.NOT_FOUND).send({ code: 404 })
 })
 
 const linkBirdParkByName = catchAsync(async (req, res) => {
@@ -59,10 +59,10 @@ const linkBirdParkByName = catchAsync(async (req, res) => {
     } catch (err) {
       await session.abortTransaction()
       session.endSession()
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
     }
   }
-  res.status(httpStatus.NOT_FOUND).send()
+  res.status(httpStatus.NOT_FOUND).send({ code: 404 })
 })
 
 const unLinkBirdParkById = catchAsync(async (req, res) => {
@@ -82,10 +82,10 @@ const unLinkBirdParkById = catchAsync(async (req, res) => {
     } catch (err) {
       await session.abortTransaction()
       session.endSession()
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
     }
   }
-  res.status(httpStatus.NOT_FOUND).send()
+  res.status(httpStatus.NOT_FOUND).send({ code: 404 })
 })
 
 const unLinkBirdParkByName = catchAsync(async (req, res) => {
@@ -105,10 +105,10 @@ const unLinkBirdParkByName = catchAsync(async (req, res) => {
     } catch (err) {
       await session.abortTransaction()
       session.endSession()
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
     }
   }
-  res.status(httpStatus.NOT_FOUND).send()
+  res.status(httpStatus.NOT_FOUND).send({ code: 404 })
 })
 
 // Remueve un Parque desde una Ave
