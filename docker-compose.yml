@@ -33,8 +33,6 @@ services:
       DATABASE_NAME: maindb
       SUPERUSER_USERNAME: superuser
       SUPERUSER_PASSWORD: superuserpassword
-      EXPRESS_USERNAME: expressuser
-      EXPRESS_PASSWORD: expresspassword
       DATABASE_USERNAME: maindbuser
       DATABASE_PASSWORD: maindbpassword
       REPLICA_SET_HOST: mongodb
@@ -47,23 +45,6 @@ services:
     networks:
       - local
     command: mongod --config /etc/mongo/mongod.conf --configExpand "exec"
-
-  mongo-express:
-    image: mongo-express:0.54.0
-    container_name: mongo-express
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=mongodb
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=expressuser
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=expresspassword
-      - ME_CONFIG_BASICAUTH_USERNAME=admin
-      - ME_CONFIG_BASICAUTH_PASSWORD=admin123
-    ports:
-      - 8081:8081
-    networks:
-      - local
-    depends_on:
-      - mongodb
 
 networks:
   local:
