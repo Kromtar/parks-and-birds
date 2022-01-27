@@ -1,10 +1,26 @@
 const express = require('express')
+const cors = require('cors')
+const helmet = require('helmet')
+const xss = require('xss-clean')
+const mongoSanitize = require('express-mongo-sanitize')
 const routes = require('./src/api/v1')
 
 const app = express()
 
+// Para seguridad en los headers HTTP
+app.use(helmet())
+
+// Limpieza de request
+app.use(xss())
+app.use(mongoSanitize())
+
+// Para manejo de formatos en las request
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+//Activa Cors
+app.use(cors())
+app.options('*', cors())
 
 // Rutas
 app.use('/v1', routes)

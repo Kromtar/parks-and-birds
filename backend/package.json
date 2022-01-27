@@ -12,12 +12,16 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "helmet": "^5.0.2",
     "http-status": "^1.5.0",
     "joi": "^17.5.0",
     "mongoose": "^6.1.8",
     "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.3.0"
+    "swagger-ui-express": "^4.3.0",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.5",
