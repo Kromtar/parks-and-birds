@@ -9,7 +9,17 @@ const createPark = catchAsync(async (req, res) => {
     const newPark = await Park.create(req.body)
     res.status(httpStatus.CREATED).send(newPark)
   } catch (err) {
-    res.status(httpStatus.BAD_REQUEST).send()
+    // En caso de atributo unique que se este repitiendo
+    if (err && err.code == 11000) {
+      res.status(httpStatus.BAD_REQUEST).send({
+        code: 400,
+        message:
+          'Atributo/s único/s, ' +
+          JSON.stringify(err.keyPattern) +
+          ' repetido/s',
+      })
+    }
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
   }
 })
 
@@ -48,7 +58,17 @@ const updatePark = catchAsync(async (req, res) => {
     if (updatedPark) res.send(updatedPark)
     res.status(httpStatus.NOT_FOUND).send()
   } catch (err) {
-    res.status(httpStatus.BAD_REQUEST).send()
+    // En caso de atributo unique que se este repitiendo
+    if (err && err.code == 11000) {
+      res.status(httpStatus.BAD_REQUEST).send({
+        code: 400,
+        message:
+          'Atributo/s único/s, ' +
+          JSON.stringify(err.keyPattern) +
+          ' repetido/s',
+      })
+    }
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
   }
 })
 
