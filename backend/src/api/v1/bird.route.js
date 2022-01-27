@@ -56,8 +56,7 @@ module.exports = router
  *                  type: number
  *                  description: Extension promedio de las alas del Ave
  *               risk:
- *                  type: string
- *                  description: Nivel de riesgo de extinción según estándar iucnredlist.org
+ *                  $ref: '#/components/types/Enums/risk_enum'
  *               link:
  *                  type: string
  *                  description: Link a referencia externa del Ave
@@ -74,7 +73,7 @@ module.exports = router
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Park'
+ *                $ref: '#/components/schemas/Bird'
  *       "400":
  *         $ref: '#/components/responses/Bad'
  *
@@ -160,8 +159,7 @@ module.exports = router
  *                  type: number
  *                  description: Extension promedio de las alas del Ave
  *               risk:
- *                  type: string
- *                  description: Nivel de riesgo de extinción según estándar iucnredlist.org
+ *                  $ref: '#/components/types/Enums/risk_enum'
  *               link:
  *                  type: string
  *                  description: Link a referencia externa del Ave

@@ -17,7 +17,7 @@ components:
         length_cm:
           type: number
         risk:
-          type: string
+          $ref: '#/components/types/Enums/risk_enum'
         link:
           type: string
         parks:
@@ -50,7 +50,7 @@ components:
         length_cm:
           type: number
         risk:
-          type: string
+          $ref: '#/components/types/Enums/risk_enum'
         link:
           type: string
         parks:
@@ -155,7 +155,7 @@ components:
               length_cm:
                 type: number
               risk:
-                type: string
+                $ref: '#/components/types/Enums/risk_enum'
               link:
                 type: string
       example:
@@ -186,6 +186,22 @@ components:
     ObjectId:
       type: string
       format: uuid
+    Enums:
+      risk_enum:
+        type: string,
+        enum:
+          [
+            'No evaluado',
+            'Datos insuficientes',
+            'Menor riesgo',
+            'Casi amenazado',
+            'Vulnerable',
+            'Peligro de extinción',
+            'Peligro de extinción critico',
+            'Extinto en la naturaleza',
+            'Extinto',
+          ]
+        description: Nivel de riesgo de extinción según estándar iucnredlist.org
   responses:
     Bad:
       description: Bad Request

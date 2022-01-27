@@ -1,5 +1,17 @@
 const mongoose = require('mongoose')
 
+const risk_enum = [
+  'No evaluado',
+  'Datos insuficientes',
+  'Menor riesgo',
+  'Casi amenazado',
+  'Vulnerable',
+  'Peligro de extinción',
+  'Peligro de extinción critico',
+  'Extinto en la naturaleza',
+  'Extinto',
+]
+
 const birdSchema = mongoose.Schema({
   name: {
     type: String,
@@ -21,10 +33,7 @@ const birdSchema = mongoose.Schema({
   },
   risk: {
     type: String,
-    maxLength: 50,
-    trim: true,
-    lowercase: true,
-    //FUTURE: Existen 9 clasificaciones oficiales (iucnredlist.org) que pueden quedar como un Enum
+    enum: risk_enum,
     default: 'No evaluado',
   },
   link: {
@@ -46,3 +55,4 @@ const Bird = mongoose.model('Bird', birdSchema)
 
 module.exports = Bird
 module.exports.schema = birdSchema
+module.exports.risk_enum = risk_enum

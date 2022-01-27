@@ -78,7 +78,7 @@ El modelo Bird tiene los atributos:
 - description: Descripción general del Ave
 - habitat: Habitat del Ave
 - length_cm: Extension de las alas en centímetros del Ave
-- risk: Nivel de riesgo de extinción según la escala de [iucnredlist](https://www.iucnredlist.org/)
+- risk: Nivel de riesgo de extinción según la escala de [iucnredlist](https://www.iucnredlist.org/), los cuales son: [ No evaluado, Datos insuficientes, Menor riesgo, Casi amenazado, Vulnerable, Peligro de extinción, Peligro de extinción critico, Extinto en la naturaleza, Extinto ]
 - link: Link a [avesdechile](https://www.avesdechile.cl/)
 - parks: Lista de Ids de los Parques donde esta el Ave
 
