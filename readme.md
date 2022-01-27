@@ -67,7 +67,7 @@ El modelo Park tiene los atributos:
 
 - name: Nombre del Parque
 - region: Region de Chile donde se localiza el Parque
-- park_type: Tipo de Parque según [CONAF](https://www.conaf.cl/) (Parque, Reserva o Monumento)
+- park_type: Tipo de Parque según [CONAF](https://www.conaf.cl/), los cuales son: [ Parque, Reserva, Monumento ]
 - hectares: Hectáreas de extension del Parque
 - link: Link a la web oficial del Parque
 - birds: Lista de Ids de las Aves que pueden ser vistas en el Parque

@@ -17,7 +17,7 @@ components:
         length_cm:
           type: number
         risk:
-          $ref: '#/components/types/Enums/risk_enum'
+          $ref: '#/components/types/Enums/riskEnum'
         link:
           type: string
         parks:
@@ -50,7 +50,7 @@ components:
         length_cm:
           type: number
         risk:
-          $ref: '#/components/types/Enums/risk_enum'
+          $ref: '#/components/types/Enums/riskEnum'
         link:
           type: string
         parks:
@@ -65,7 +65,7 @@ components:
               region:
                 type: string
               park_type:
-                type: string
+                $ref: '#/components/types/Enums/parkTypeEnum'
               hectares:
                 type: number
               link:
@@ -83,7 +83,7 @@ components:
             id: 5ebac534954b54139806c114,
             name: Parque Nacional La Campana,
             region: Valparaiso,
-            park_type: parque,
+            park_type: Parque,
             hectares: 8000,
             link: https://www.conaf.cl/parques/parque-nacional-la-campana/,
           ]
@@ -102,7 +102,7 @@ components:
         region:
           type: string
         park_type:
-          type: string
+          $ref: '#/components/types/Enums/parkTypeEnum'
         hectares:
           type: number
         link:
@@ -115,7 +115,7 @@ components:
         id: 5ebac534954b54139806c114
         name: Parque Nacional La Campana
         region: Valparaiso
-        park_type: parque
+        park_type: Parque
         hectares: 8000
         link: https://www.conaf.cl/parques/parque-nacional-la-campana/
         birds: [5ebac534954b54139806c112]
@@ -134,7 +134,7 @@ components:
         region:
           type: string
         park_type:
-          type: string
+          $ref: '#/components/types/Enums/parkTypeEnum'
         hectares:
           type: number
         link:
@@ -155,14 +155,14 @@ components:
               length_cm:
                 type: number
               risk:
-                $ref: '#/components/types/Enums/risk_enum'
+                $ref: '#/components/types/Enums/riskEnum'
               link:
                 type: string
       example:
         id: 5ebac534954b54139806c114
         name: Parque Nacional La Campana
         region: Valparaiso
-        park_type: parque
+        park_type: Parque
         hectares: 8000
         link: https://www.conaf.cl/parques/parque-nacional-la-campana/
         birds:
@@ -187,7 +187,7 @@ components:
       type: string
       format: uuid
     Enums:
-      risk_enum:
+      riskEnum:
         type: string,
         enum:
           [
@@ -202,6 +202,10 @@ components:
             'Extinto',
           ]
         description: Nivel de riesgo de extinción según estándar iucnredlist.org
+      parkTypeEnum:
+        type: string,
+        enum: ['Parque', 'Reserva', 'Monumento']
+        description: Tipo de zona protegida según clasificación de CONAF
   responses:
     Bad:
       description: Bad Request

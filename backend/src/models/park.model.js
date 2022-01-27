@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const parkTypeEnum = ['Parque', 'Reserva', 'Monumento']
+
 const parkSchema = mongoose.Schema({
   name: {
     type: String,
@@ -13,11 +15,9 @@ const parkSchema = mongoose.Schema({
     maxLength: 100,
   },
   park_type: {
-    //FUTURE: Existen 3 tipos de parques, se puede pasar a ENUM
     type: String,
+    enum: parkTypeEnum,
     required: true,
-    trim: true,
-    lowercase: true,
   },
   hectares: {
     type: Number,
@@ -42,3 +42,4 @@ const Park = mongoose.model('Park', parkSchema)
 
 module.exports = Park
 module.exports.schema = parkSchema
+module.exports.parkTypeEnum = parkTypeEnum

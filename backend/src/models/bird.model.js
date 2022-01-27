@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const risk_enum = [
+const riskEnum = [
   'No evaluado',
   'Datos insuficientes',
   'Menor riesgo',
@@ -33,7 +33,7 @@ const birdSchema = mongoose.Schema({
   },
   risk: {
     type: String,
-    enum: risk_enum,
+    enum: riskEnum,
     default: 'No evaluado',
   },
   link: {
@@ -55,4 +55,4 @@ const Bird = mongoose.model('Bird', birdSchema)
 
 module.exports = Bird
 module.exports.schema = birdSchema
-module.exports.risk_enum = risk_enum
+module.exports.riskEnum = riskEnum

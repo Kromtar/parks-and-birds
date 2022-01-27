@@ -56,7 +56,7 @@ module.exports = router
  *                  type: number
  *                  description: Extension promedio de las alas del Ave
  *               risk:
- *                  $ref: '#/components/types/Enums/risk_enum'
+ *                  $ref: '#/components/types/Enums/riskEnum'
  *               link:
  *                  type: string
  *                  description: Link a referencia externa del Ave
@@ -159,7 +159,7 @@ module.exports = router
  *                  type: number
  *                  description: Extension promedio de las alas del Ave
  *               risk:
- *                  $ref: '#/components/types/Enums/risk_enum'
+ *                  $ref: '#/components/types/Enums/riskEnum'
  *               link:
  *                  type: string
  *                  description: Link a referencia externa del Ave

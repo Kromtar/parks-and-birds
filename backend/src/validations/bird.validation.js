@@ -1,6 +1,6 @@
 const Joi = require('joi')
 const { objectId } = require('./custom')
-const { risk_enum } = require('../models/bird.model')
+const { riskEnum } = require('../models/bird.model')
 
 const createBird = {
   body: Joi.object().keys({
@@ -8,7 +8,7 @@ const createBird = {
     description: Joi.string().max(500),
     habitat: Joi.string().max(500),
     length_cm: Joi.number().min(0),
-    risk: Joi.string().valid(...risk_enum),
+    risk: Joi.string().valid(...riskEnum),
     link: Joi.string().max(300),
   }),
 }
@@ -29,7 +29,7 @@ const updateBird = {
       description: Joi.string().max(500),
       habitat: Joi.string().max(500),
       length_cm: Joi.number().min(0),
-      risk: Joi.string().valid(...risk_enum),
+      risk: Joi.string().valid(...riskEnum),
       link: Joi.string().max(300),
     })
     // Al menos uno de los campos debe incluirse

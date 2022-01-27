@@ -53,8 +53,7 @@ module.exports = router
  *                 maxLength: 100
  *                 description: Region geopolítica de donde se localiza el Parque
  *               park_type:
- *                 type: string
- *                 description: Tipo de zona (Parque, Reserva, Manumento)
+ *                 $ref: '#/components/types/Enums/parkTypeEnum'
  *               hectares:
  *                  type: number
  *                  description: Extension del Parque
@@ -64,7 +63,7 @@ module.exports = router
  *             example:
  *               name: Parque Nacional La Campana
  *               region: Valparaiso
- *               park_type: parque
+ *               park_type: Parque
  *               hectares: 8000
  *               link: https://www.conaf.cl/parques/parque-nacional-la-campana/
  *     responses:
@@ -154,8 +153,7 @@ module.exports = router
  *                 maxLength: 100
  *                 description: Region geopolítica de donde se localiza el Parque
  *               park_type:
- *                 type: string
- *                 description: Tipo de zona (Parque, Reserva, Manumento)
+ *                 $ref: '#/components/types/Enums/parkTypeEnum'
  *               hectares:
  *                  type: number
  *                  description: Extension del Parque
@@ -168,7 +166,7 @@ module.exports = router
  *             example:
  *               name: Parque Nacional La Campana
  *               region: Valparaiso
- *               park_type: parque
+ *               park_type: Parque
  *               hectares: 8000
  *               link: https://www.conaf.cl/parques/parque-nacional-la-campana/
  *     responses:
