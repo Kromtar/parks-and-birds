@@ -31,6 +31,7 @@ const updateBird = {
       risk: Joi.string().max(50),
       link: Joi.string().max(300),
     })
+    // Al menos uno de los campos debe incluirse
     .min(1),
 }
 

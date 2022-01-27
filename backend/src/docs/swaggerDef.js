@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000
 const swaggerDef = {
   openapi: '3.0.0',
   info: {
-    title: 'Parques y sus Aves',
+    title: 'Parques🌲 y sus Aves🐦',
     version,
   },
   servers: [

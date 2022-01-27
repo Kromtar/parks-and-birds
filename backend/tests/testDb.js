@@ -1,3 +1,8 @@
+/*
+ * Genera una conexión a una base de datos de prueba para los test
+ * La base de datos se limpia cada vez que inicia y termina un test
+ */
+
 const mongoose = require('mongoose')
 
 const db_username = process.env.DATABASE_USERNAME || ''

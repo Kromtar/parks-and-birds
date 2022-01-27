@@ -7,7 +7,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     environment:
-      DOCKER_MODE: development
+      DOCKER_MODE: development #Para definir como se debe ejecutar NodeJs: development, production
       PORT: 5000
       DATABASE_NAME: maindb
       DATABASE_USERNAME: maindbuser

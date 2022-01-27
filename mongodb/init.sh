@@ -1,5 +1,5 @@
 # Inicia la base de datos con la replica set y con los principales usuarios
-
+# Se espera 10 segundos para asegurar que el proceso de MongoDb ya este ejecutándose completamente
 sleep 10
 
 echo "Init Replica Set"
