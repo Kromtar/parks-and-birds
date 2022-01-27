@@ -1,3 +1,4 @@
+const { startSession } = require('mongoose')
 const httpStatus = require('http-status')
 const catchAsync = require('../utils/catchAsync')
 const { Park, Bird } = require('../models')
@@ -8,7 +9,17 @@ const createPark = catchAsync(async (req, res) => {
     const newPark = await Park.create(req.body)
     res.status(httpStatus.CREATED).send(newPark)
   } catch (err) {
-    res.status(httpStatus.BAD_REQUEST).send()
+    // En caso de atributo unique que se este repitiendo
+    if (err && err.code == 11000) {
+      res.status(httpStatus.BAD_REQUEST).send({
+        code: 400,
+        message:
+          'Atributo/s único/s, ' +
+          JSON.stringify(err.keyPattern) +
+          ' repetido/s',
+      })
+    }
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 
@@ -34,7 +45,7 @@ const getPark = catchAsync(async (req, res) => {
     }
     res.send(park)
   }
-  res.status(httpStatus.NOT_FOUND).send()
+  res.status(httpStatus.NOT_FOUND).send({ code: 404 })
 })
 
 const updatePark = catchAsync(async (req, res) => {
@@ -45,22 +56,44 @@ const updatePark = catchAsync(async (req, res) => {
       { new: true }
     )
     if (updatedPark) res.send(updatedPark)
-    res.status(httpStatus.NOT_FOUND).send()
+    res.status(httpStatus.NOT_FOUND).send({ code: 404 })
   } catch (err) {
-    res.status(httpStatus.BAD_REQUEST).send()
+    // En caso de atributo unique que se este repitiendo
+    if (err && err.code == 11000) {
+      res.status(httpStatus.BAD_REQUEST).send({
+        code: 400,
+        message:
+          'Atributo/s único/s, ' +
+          JSON.stringify(err.keyPattern) +
+          ' repetido/s',
+      })
+    }
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
 })
 
 const deletePark = catchAsync(async (req, res) => {
-  const park = await Park.findByIdAndDelete(req.params.park_id)
-  if (park) {
-    // Eliminamos las referencias a este Parque de las Aves
-    park.birds.forEach(async (bird_id) => {
-      await removePark(bird_id, req.params.park_id)
-    })
-    res.send(park)
+  const session = await startSession()
+  try {
+    session.startTransaction()
+    const park = await Park.findByIdAndDelete(req.params.park_id, { session })
+    if (park) {
+      for (const bird_id of park.birds) {
+        await removePark(bird_id, req.params.park_id, session)
+      }
+    }
+    await session.commitTransaction()
+    session.endSession()
+    if (park) {
+      res.send(park)
+    } else {
+      res.status(httpStatus.NOT_FOUND).send({ code: 404 })
+    }
+  } catch (err) {
+    await session.abortTransaction()
+    session.endSession()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ code: 500 })
   }
-  res.status(httpStatus.NOT_FOUND).send()
 })
 
 module.exports = {

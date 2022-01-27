@@ -1,11 +1,14 @@
 const Joi = require('joi')
 const { objectId } = require('./custom')
+const { parkTypeEnum } = require('../models/park.model')
 
 const createPark = {
   body: Joi.object().keys({
     name: Joi.string().max(100).required(),
     region: Joi.string().max(100).required(),
-    park_type: Joi.string().required(),
+    park_type: Joi.string()
+      .valid(...parkTypeEnum)
+      .required(),
     hectares: Joi.number().min(0),
     link: Joi.string().max(300),
   }),
@@ -25,7 +28,7 @@ const updatePark = {
     .keys({
       name: Joi.string().max(100),
       region: Joi.string().max(100),
-      park_type: Joi.string(),
+      park_type: Joi.string().valid(...parkTypeEnum),
       hectares: Joi.number().min(0),
       link: Joi.string().max(300),
     })

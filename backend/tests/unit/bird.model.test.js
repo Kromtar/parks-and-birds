@@ -1,6 +1,7 @@
 const { faker } = require('@faker-js/faker')
 var ObjectID = require('bson').ObjectID
 const { Bird } = require('../../src/models')
+const { riskEnum } = require('../../src/models/bird.model')
 
 // Pruebas unitarias modelo Bird
 describe('Bird model', () => {
@@ -12,7 +13,7 @@ describe('Bird model', () => {
       description: faker.random.word(),
       habitat: faker.random.word(),
       length_cm: faker.datatype.number({ min: 1 }),
-      risk: faker.random.word().toLocaleLowerCase(),
+      risk: faker.random.arrayElement(riskEnum),
       link: faker.random.word(),
       parks: [new ObjectID()],
     }
@@ -47,8 +48,8 @@ describe('Bird model', () => {
     await expect(new Bird(newBird).validate()).rejects.toThrow()
   })
 
-  test('risk prop maxlengh', async () => {
-    newBird.risk = faker.datatype.string(51)
+  test('risk prop invalid', async () => {
+    newBird.risk = 'tree'
     await expect(new Bird(newBird).validate()).rejects.toThrow()
   })
 

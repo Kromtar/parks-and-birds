@@ -3,6 +3,7 @@ const httpStatus = require('http-status')
 const { faker } = require('@faker-js/faker')
 const app = require('../../app')
 const setupTestDB = require('../testDb')
+const { riskEnum } = require('../../src/models/bird.model')
 const { Bird } = require('../../src/models')
 const { Park1, insertParks } = require('../fixtures/park.fixture')
 const { Bird1, Bird2, Bird3, insertBirds } = require('../fixtures/bird.fixture')
@@ -21,7 +22,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
     })
@@ -99,7 +100,7 @@ describe('Bird routes', () => {
     })
 
     test('should return 400 error if risk is invalid', async () => {
-      newBird.risk = faker.datatype.string(51)
+      newBird.risk = 'tree'
       await supertest(app)
         .post('/v1/bird')
         .send(newBird)
@@ -121,7 +122,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       await supertest(app)
@@ -269,7 +270,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
 
@@ -310,7 +311,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       updateBird.name = faker.datatype.string(101)
@@ -326,7 +327,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       updateBird.description = faker.datatype.string(501)
@@ -342,7 +343,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       updateBird.habitat = faker.datatype.string(501)
@@ -358,7 +359,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       updateBird.length_cm = faker.datatype.number(-10)
@@ -374,10 +375,10 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
-      updateBird.risk = faker.datatype.string(51)
+      updateBird.risk = 'tree'
       await supertest(app)
         .patch('/v1/bird/' + Bird1._id)
         .send(updateBird)
@@ -390,7 +391,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       updateBird.link = faker.datatype.string(301)
@@ -414,7 +415,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       await supertest(app)
@@ -429,7 +430,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       await supertest(app)
@@ -445,7 +446,7 @@ describe('Bird routes', () => {
         description: faker.random.word(),
         habitat: faker.random.word(),
         length_cm: faker.datatype.number({ min: 1 }),
-        risk: faker.random.word().toLocaleLowerCase(),
+        risk: faker.random.arrayElement(riskEnum),
         link: faker.random.word(),
       }
       await supertest(app)

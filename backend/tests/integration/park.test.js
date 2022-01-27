@@ -3,6 +3,7 @@ const httpStatus = require('http-status')
 const { faker } = require('@faker-js/faker')
 const app = require('../../app')
 const setupTestDB = require('../testDb')
+const { parkTypeEnum } = require('../../src/models/park.model')
 const { Park } = require('../../src/models')
 const { Park1, Park2, Park3, insertParks } = require('../fixtures/park.fixture')
 const { Bird1, insertBirds } = require('../fixtures/bird.fixture')
@@ -19,7 +20,7 @@ describe('Park routes', () => {
       newPark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -87,6 +88,14 @@ describe('Park routes', () => {
         .expect(httpStatus.BAD_REQUEST)
     })
 
+    test('should return 400 error if park_type is invalid', async () => {
+      newPark.park_type = 'tree'
+      await supertest(app)
+        .post('/v1/park')
+        .send(newPark)
+        .expect(httpStatus.BAD_REQUEST)
+    })
+
     test('should return 400 error if park_type is undefined', async () => {
       delete newPark.park_type
       await supertest(app)
@@ -116,7 +125,7 @@ describe('Park routes', () => {
       newPark = {
         name: Park1.name,
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -256,7 +265,7 @@ describe('Park routes', () => {
       const updatePark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -293,7 +302,7 @@ describe('Park routes', () => {
       const updatePark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -308,7 +317,7 @@ describe('Park routes', () => {
       const updatePark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -319,11 +328,26 @@ describe('Park routes', () => {
         .expect(httpStatus.BAD_REQUEST)
     })
 
+    test('should return 400 error if park_type is invalid', async () => {
+      const updatePark = {
+        name: faker.random.word(),
+        region: faker.random.word(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
+        hectares: faker.datatype.number({ min: 1 }),
+        link: faker.random.word(),
+      }
+      updatePark.park_type = 'tree'
+      await supertest(app)
+        .patch('/v1/park/' + Park1._id)
+        .send(updatePark)
+        .expect(httpStatus.BAD_REQUEST)
+    })
+
     test('should return 400 error if hectares is invalid', async () => {
       const updatePark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -338,7 +362,7 @@ describe('Park routes', () => {
       const updatePark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -361,7 +385,7 @@ describe('Park routes', () => {
       const updatePark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -375,7 +399,7 @@ describe('Park routes', () => {
       const updatePark = {
         name: faker.random.word(),
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }
@@ -390,7 +414,7 @@ describe('Park routes', () => {
       const updatePark = {
         name: Park1.name,
         region: faker.random.word(),
-        park_type: faker.random.word().toLocaleLowerCase(),
+        park_type: faker.random.arrayElement(parkTypeEnum),
         hectares: faker.datatype.number({ min: 1 }),
         link: faker.random.word(),
       }

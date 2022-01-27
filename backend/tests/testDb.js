@@ -7,8 +7,9 @@ const mongoose = require('mongoose')
 
 const db_username = process.env.DATABASE_USERNAME || ''
 const db_password = process.env.DATABASE_PASSWORD || ''
+const db_replica_set = process.env.DATABASE_REPLICA_SET || ''
 
-const URI = 'mongodb://mongodb:27017/test'
+const URI = 'mongodb://mongodb:27017/test?replicaSet=' + db_replica_set
 const options = {
   auth: {
     username: db_username,

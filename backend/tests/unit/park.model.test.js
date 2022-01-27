@@ -1,6 +1,7 @@
 const { faker } = require('@faker-js/faker')
 var ObjectID = require('bson').ObjectID
 const { Park } = require('../../src/models')
+const { parkTypeEnum } = require('../../src/models/park.model')
 
 // Pruebas unitarias modelo Park
 describe('Park model', () => {
@@ -10,7 +11,7 @@ describe('Park model', () => {
     newPark = {
       name: faker.random.word(),
       region: faker.random.word(),
-      park_type: faker.random.word().toLocaleLowerCase(),
+      park_type: faker.random.arrayElement(parkTypeEnum),
       hectares: faker.datatype.number({ min: 1 }),
       link: faker.random.word(),
       birds: [new ObjectID()],
@@ -43,6 +44,11 @@ describe('Park model', () => {
 
   test('park_type prop required', async () => {
     delete newPark.park_type
+    await expect(new Park(newPark).validate()).rejects.toThrow()
+  })
+
+  test('park_type prop invalid', async () => {
+    newPark.park_type = 'tree'
     await expect(new Park(newPark).validate()).rejects.toThrow()
   })
 

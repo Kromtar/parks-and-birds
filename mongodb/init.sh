@@ -11,9 +11,6 @@ mongo --eval 'db.createUser({user:"'${SUPERUSER_USERNAME}'", pwd:"'${SUPERUSER_P
 echo "Create main database"
 mongo -u $SUPERUSER_USERNAME -p $SUPERUSER_PASSWORD --eval 'db = db.getSiblingDB("'${DATABASE_NAME}'"); db.dummy.insert({"dummy":"dummy"}); db = db.getSiblingDB("test"); db.dummy.insert({"dummy":"dummy"}); quit();'
 
-echo "Create mongo-express user"
-mongo -u $SUPERUSER_USERNAME -p $SUPERUSER_PASSWORD --eval 'db.createUser({user:"'${EXPRESS_USERNAME}'", pwd:"'${EXPRESS_PASSWORD}'", roles:[{role:"clusterMonitor", db:"admin"}, {role: "readWrite", db: "'${DATABASE_NAME}'"}, {role: "readWrite", db: "test"}]}); quit()' admin
-
 echo "Create main database normal user"
 mongo -u $SUPERUSER_USERNAME -p $SUPERUSER_PASSWORD --eval 'db.createUser({user:"'${DATABASE_USERNAME}'", pwd:"'${DATABASE_PASSWORD}'", roles:[{role:"readWrite", db:"'${DATABASE_NAME}'"}, {role:"readWrite", db:"test"}]}); quit()' admin
 
