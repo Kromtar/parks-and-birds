@@ -1,3 +1,4 @@
+const { startSession } = require('mongoose')
 const httpStatus = require('http-status')
 const catchAsync = require('../utils/catchAsync')
 const { Park, Bird } = require('../models')
@@ -52,15 +53,27 @@ const updatePark = catchAsync(async (req, res) => {
 })
 
 const deletePark = catchAsync(async (req, res) => {
-  const park = await Park.findByIdAndDelete(req.params.park_id)
-  if (park) {
-    // Eliminamos las referencias a este Parque de las Aves
-    park.birds.forEach(async (bird_id) => {
-      await removePark(bird_id, req.params.park_id)
-    })
-    res.send(park)
+  const session = await startSession()
+  try {
+    session.startTransaction()
+    const park = await Park.findByIdAndDelete(req.params.park_id, { session })
+    if (park) {
+      for (const bird_id of park.birds) {
+        await removePark(bird_id, req.params.park_id, session)
+      }
+    }
+    await session.commitTransaction()
+    session.endSession()
+    if (park) {
+      res.send(park)
+    } else {
+      res.status(httpStatus.NOT_FOUND).send()
+    }
+  } catch (err) {
+    await session.abortTransaction()
+    session.endSession()
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
   }
-  res.status(httpStatus.NOT_FOUND).send()
 })
 
 module.exports = {
