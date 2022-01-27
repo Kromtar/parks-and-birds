@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "start-dev": "nodemon server.js",
+    "start-dev": "nodemon -x 'node server.js || touch server.js'",
     "test": "jest --runInBand"
   },
   "dependencies": {
