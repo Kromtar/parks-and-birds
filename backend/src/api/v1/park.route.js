@@ -62,11 +62,11 @@ module.exports = router
  *                  type: string
  *                  description: Link a sitio oficial de CONAF
  *             example:
- *               name: Parque Nacional Lauca
- *               region: Arica y Parinacota
+ *               name: Parque Nacional La Campana
+ *               region: Valparaiso
  *               park_type: parque
- *               hectares: 137883
- *               link: https://www.conaf.cl/parques/parque-nacional-lauca/
+ *               hectares: 8000
+ *               link: https://www.conaf.cl/parques/parque-nacional-la-campana/
  *     responses:
  *       "201":
  *         description: Created
@@ -166,11 +166,11 @@ module.exports = router
  *                  type: [string]
  *                  description: Ids de las Aves que pueden ser encontradas en este Parque
  *             example:
- *               name: Parque Nacional Lauca
- *               region: Arica y Parinacota
+ *               name: Parque Nacional La Campana
+ *               region: Valparaiso
  *               park_type: parque
- *               hectares: 137883
- *               link: https://www.conaf.cl/parques/parque-nacional-lauca/
+ *               hectares: 8000
+ *               link: https://www.conaf.cl/parques/parque-nacional-la-campana/
  *     responses:
  *       "200":
  *         description: OK

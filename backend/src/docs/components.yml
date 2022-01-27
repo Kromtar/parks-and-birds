@@ -26,12 +26,12 @@ components:
             $ref: '#/components/types/ObjectId'
       example:
         id: 5ebac534954b54139806c112
-        name: Gorrión
-        description: Partes superiores pardas, manchadas de castaño y negro; lomo y supracaudales gris pardusco. Partes inferiores blanquesinas, lavadas de gris pardusco.
-        habitat: Marcada preferencia hacia los lugares cercanos al hombre, como jardines, plazas, huertos y chacras de ciudades, pueblos y caserios. Raro hacia las zonas agrestes.
-        length_cm: 17
+        name: Tordo renegrido
+        description: Totalmente negro con tornasoles violáceos azulados. Pico negro. Patas negras.
+        habitat: Campos abiertos, terrenos cultivados, lechos de rios, faldeos de cerros, ciudades; hasta unos 2.000 msnm.
+        length_cm: 20
         risk: Menor riesgo
-        link: https://www.avesdechile.cl/234.htm
+        link: https://www.avesdechile.cl/133.htm
         parks: [5ebac534954b54139806c113]
     BirdExtended:
       type: object
@@ -72,20 +72,20 @@ components:
                 type: string
       example:
         id: 5ebac534954b54139806c112
-        name: Gorrión
-        description: Partes superiores pardas, manchadas de castaño y negro; lomo y supracaudales gris pardusco. Partes inferiores blanquesinas, lavadas de gris pardusco.
-        habitat: Marcada preferencia hacia los lugares cercanos al hombre, como jardines, plazas, huertos y chacras de ciudades, pueblos y caserios. Raro hacia las zonas agrestes.
-        length_cm: 17
+        name: Tordo renegrido
+        description: Totalmente negro con tornasoles violáceos azulados. Pico negro. Patas negras.
+        habitat: Campos abiertos, terrenos cultivados, lechos de rios, faldeos de cerros, ciudades; hasta unos 2.000 msnm.
+        length_cm: 20
         risk: Menor riesgo
-        link: https://www.avesdechile.cl/234.htm
+        link: https://www.avesdechile.cl/133.htm
         parks:
           [
             id: 5ebac534954b54139806c114,
-            name: Parque Nacional Lauca,
-            region: Arica y Parinacota,
+            name: Parque Nacional La Campana,
+            region: Valparaiso,
             park_type: parque,
-            hectares: 137883,
-            link: https://www.conaf.cl/parques/parque-nacional-lauca/,
+            hectares: 8000,
+            link: https://www.conaf.cl/parques/parque-nacional-la-campana/,
           ]
     Park:
       type: object
@@ -113,11 +113,11 @@ components:
             $ref: '#/components/types/ObjectId'
       example:
         id: 5ebac534954b54139806c114
-        name: Parque Nacional Lauca
-        region: Arica y Parinacota
+        name: Parque Nacional La Campana
+        region: Valparaiso
         park_type: parque
-        hectares: 137883
-        link: https://www.conaf.cl/parques/parque-nacional-lauca/
+        hectares: 8000
+        link: https://www.conaf.cl/parques/parque-nacional-la-campana/
         birds: [5ebac534954b54139806c112]
     ParkExtended:
       type: object
@@ -160,26 +160,20 @@ components:
                 type: string
       example:
         id: 5ebac534954b54139806c114
-        name: Parque Nacional Lauca
-        region: Arica y Parinacota
+        name: Parque Nacional La Campana
+        region: Valparaiso
         park_type: parque
-        hectares: 137883
-        link: https://www.conaf.cl/parques/parque-nacional-lauca/
+        hectares: 8000
+        link: https://www.conaf.cl/parques/parque-nacional-la-campana/
         birds:
           [
             id: 5ebac534954b54139806c112,
-            name: Gorrión,
-            description: Partes superiores pardas
-              manchadas de castaño y negro; lomo y supracaudales gris pardusco. Partes inferiores blanquesinas
-              lavadas de gris pardusco.,
-            habitat: Marcada preferencia hacia los lugares cercanos al hombre
-              como jardines
-              plazas
-              huertos y chacras de ciudades
-              pueblos y caserios. Raro hacia las zonas agrestes.,
-            length_cm: 17,
+            name: Tordo renegrido,
+            description: Totalmente negro con tornasoles violáceos azulados. Pico negro. Patas negras.,
+            habitat: 'Campos abiertos, terrenos cultivados, lechos de rios, faldeos de cerros, ciudades; hasta unos 2.000 msnm',
+            length_cm: 20,
             risk: Menor riesgo,
-            link: https://www.avesdechile.cl/234.htm,
+            link: https://www.avesdechile.cl/133.htm,
           ]
     Error:
       type: object

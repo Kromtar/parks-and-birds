@@ -37,7 +37,7 @@ module.exports = router
 /**
  * @swagger
  * tags:
- *   name: Other
+ *   name: Others
  *   description: Para manejo de relaciones
  */
 
@@ -46,7 +46,7 @@ module.exports = router
  * /link_bird_and_park_by_id:
  *   post:
  *     summary: Relaciona una Ave y un Parque mediante la Id de cada uno
- *     tags: [Other]
+ *     tags: [Others]
  *     requestBody:
  *       required: true
  *       content:
@@ -77,7 +77,7 @@ module.exports = router
  * /link_bird_and_park_by_name:
  *   post:
  *     summary: Relaciona una Ave y un Parque mediante el nombre de cada uno
- *     tags: [Other]
+ *     tags: [Others]
  *     requestBody:
  *       required: true
  *       content:
@@ -105,7 +105,7 @@ module.exports = router
  * /unlink_bird_and_park_by_id:
  *   post:
  *     summary: Remueve la relación entre una Ave y un Parque mediante la Id de cada uno
- *     tags: [Other]
+ *     tags: [Others]
  *     requestBody:
  *       required: true
  *       content:
@@ -136,7 +136,7 @@ module.exports = router
  * /unlink_bird_and_park_by_name:
  *   post:
  *     summary: Remueve la relación entre una Ave y un Parque mediante el nombre de cada uno
- *     tags: [Other]
+ *     tags: [Others]
  *     requestBody:
  *       required: true
  *       content:

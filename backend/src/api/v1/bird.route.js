@@ -62,12 +62,12 @@ module.exports = router
  *                  type: string
  *                  description: Link a referencia externa del Ave
  *             example:
- *               name: Gorrión
- *               description: Partes superiores pardas, manchadas de castaño y negro; lomo y supracaudales gris pardusco. Partes inferiores blanquesinas, lavadas de gris pardusco.
- *               habitat: Marcada preferencia hacia los lugares cercanos al hombre, como jardines, plazas, huertos y chacras de ciudades, pueblos y caserios. Raro hacia las zonas agrestes.
- *               length_cm: 17
+ *               name: Tordo renegrido
+ *               description: Totalmente negro con tornasoles violáceos azulados. Pico negro. Patas negras.
+ *               habitat: Campos abiertos, terrenos cultivados, lechos de rios, faldeos de cerros, ciudades; hasta unos 2.000 msnm.
+ *               length_cm: 20
  *               risk: Menor riesgo
- *               link: https://www.avesdechile.cl/234.htm
+ *               link: https://www.avesdechile.cl/133.htm
  *     responses:
  *       "201":
  *         description: Created
@@ -166,12 +166,12 @@ module.exports = router
  *                  type: string
  *                  description: Link a referencia externa del Ave
  *             example:
- *               name: Gorrión
- *               description: Partes superiores pardas, manchadas de castaño y negro; lomo y supracaudales gris pardusco. Partes inferiores blanquesinas, lavadas de gris pardusco.
- *               habitat: Marcada preferencia hacia los lugares cercanos al hombre, como jardines, plazas, huertos y chacras de ciudades, pueblos y caserios. Raro hacia las zonas agrestes.
- *               length_cm: 17
+ *               name: Tordo renegrido
+ *               description: Totalmente negro con tornasoles violáceos azulados. Pico negro. Patas negras.
+ *               habitat: Campos abiertos, terrenos cultivados, lechos de rios, faldeos de cerros, ciudades; hasta unos 2.000 msnm.
+ *               length_cm: 20
  *               risk: Menor riesgo
- *               link: https://www.avesdechile.cl/234.htm
+ *               link: https://www.avesdechile.cl/133.htm
  *     responses:
  *       "200":
  *         description: OK
