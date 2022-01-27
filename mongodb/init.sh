@@ -17,4 +17,5 @@ mongo -u $SUPERUSER_USERNAME -p $SUPERUSER_PASSWORD --eval 'db.createUser({user:
 echo "Create main database normal user"
 mongo -u $SUPERUSER_USERNAME -p $SUPERUSER_PASSWORD --eval 'db.createUser({user:"'${DATABASE_USERNAME}'", pwd:"'${DATABASE_PASSWORD}'", roles:[{role:"readWrite", db:"'${DATABASE_NAME}'"}, {role:"readWrite", db:"test"}]}); quit()' admin
 
-sh populate.sh
+echo "Populate DB with initial data"
+mongorestore --verbose ./saveDb -u=$DATABASE_USERNAME -p=$DATABASE_PASSWORD
